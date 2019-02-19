@@ -14,13 +14,8 @@ defmodule PaasWeb.Router do
   end
 
   scope "/", PaasWeb do
-    pipe_through :browser
+    pipe_through :api
 
-    get "/", PageController, :index
+    get "/", PunController, :show
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", PaasWeb do
-  #   pipe_through :api
-  # end
 end

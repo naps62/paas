@@ -1,11 +1,14 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Paas.Repo.insert!(%Paas.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias Paas.Content.Pun
+alias Paas.Repo
+
+[
+  %{body: "Geology rocks, but geography is where it's at."},
+  %{body: "Bread is like the sun. It rises in the yeast and sets in the waist"},
+  %{body: "To the guy who took my antidepressants: I hope you're happy"},
+  %{body: "Leather armor is perfect for sneaking out. It's literally made of hide."}
+]
+|> Enum.each(fn pun ->
+  %Pun{}
+  |> Pun.changeset(pun)
+  |> Repo.insert()
+end)
